@@ -117,7 +117,7 @@ for epoch in range(epoch_s,num_epochs):
         save_grad_pred = {}
         for name, param in net.named_parameters():
             if param.requires_grad:
-                save_grad_pred[name] = param.grad
+                save_grad_pred[name] = param.grad.clone().detach()
 
         optimizer.zero_grad()
         add_out = net(haze)
@@ -149,7 +149,7 @@ for epoch in range(epoch_s,num_epochs):
             save_grad_current = {}
             for name, param in net.named_parameters():
                 if param.requires_grad:
-                    save_grad_current[name] = param.grad
+                    save_grad_current[name] = param.grad.clone().detach()
             break
         # update score
         optimizer.zero_grad()
